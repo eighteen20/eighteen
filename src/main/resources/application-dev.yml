@@ -6,6 +6,12 @@ spring:
     name: love
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/love
+    url: jdbc:postgresql://localhost:5432/eighteen?currentSchema=love
     username: postgresql
     password: postgresql
+  data:
+    redis:
+      database: 5
+      host: 127.0.0.1
+      port: 63791
+      password: abcde12345

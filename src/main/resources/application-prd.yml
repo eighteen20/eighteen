@@ -1,11 +1,17 @@
 server:
-  port: 9999
+  port: 8888
 
 spring:
   application:
     name: love
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/love
-    username: postgresql
-    password: postgresql
+    url: jdbc:postgresql://127.0.0.1:5432/eighteen?currentSchema=love
+    username: eighteen
+    password: XkyGszFCbR8i
+  data:
+    redis:
+      database: 0
+      host: 127.0.0.1
+      port: 6379
+      password: LJMredis1211@

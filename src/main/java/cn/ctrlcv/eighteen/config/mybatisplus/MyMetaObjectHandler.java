@@ -1,13 +1,14 @@
 package cn.ctrlcv.eighteen.config.mybatisplus;
 
-import cn.ctrlcv.eighteen.base.model.BaseEntityField;
+import cn.ctrlcv.eighteen.common.enums.FlagEnum;
+import cn.ctrlcv.eighteen.common.model.BaseEntityField;
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.stereotype.Component;
 
 import java.time.Clock;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * Class Name: MyMetaObjectHandler
@@ -23,13 +24,16 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
         log.info("start insert fill ....");
-        this.strictInsertFill(metaObject, BaseEntityField.COL_CREATED_AT, () -> LocalDateTime.now(Clock.systemUTC()), LocalDateTime.class);
+        this.strictInsertFill(metaObject, BaseEntityField.COL_CREATED_AT, Date.class, new Date(Clock.systemUTC().millis()));
+        this.strictInsertFill(metaObject, BaseEntityField.COL_FLAG, FlagEnum.class, FlagEnum.VALID);
+
+        this.strictUpdateFill(metaObject, BaseEntityField.COL_UPDATED_AT, Date.class, new Date(Clock.systemUTC().millis()));
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
         log.info("start update fill ....");
-        this.strictUpdateFill(metaObject, BaseEntityField.COL_UPDATED_AT, () -> LocalDateTime.now(Clock.systemUTC()), LocalDateTime.class);
+        this.strictUpdateFill(metaObject, BaseEntityField.COL_UPDATED_AT, Date.class, new Date(Clock.systemUTC().millis()));
     }
 
 }

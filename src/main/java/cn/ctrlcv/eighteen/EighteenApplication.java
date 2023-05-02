@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * @author ljm19
  */
-@MapperScan
+@MapperScan("cn.ctrlcv.eighteen.**.mapper")
 @SpringBootApplication
 public class EighteenApplication {
 

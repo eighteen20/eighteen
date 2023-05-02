@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ctrlcv.eighteen.wechat.mapper.TaskTypeInfoEntityMapper">
+  <resultMap id="BaseResultMap" type="cn.ctrlcv.eighteen.wechat.mapper.entity.TaskTypeInfoEntity">
+    <!--@mbg.generated-->
+    <!--@Table task_type_info-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="task_type_name" jdbcType="VARCHAR" property="taskTypeName" />
+    <result column="task_executor_bean_name" jdbcType="VARCHAR" property="taskExecutorBeanName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, task_type_name, task_executor_bean_name
+  </sql>
+</mapper>

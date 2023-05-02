@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ctrlcv.eighteen.wechat.mapper.SubscribeMessageScheduledTaskEntityMapper">
+  <resultMap id="BaseResultMap" type="cn.ctrlcv.eighteen.wechat.mapper.entity.SubscribeMessageScheduledTaskEntity">
+    <!--@mbg.generated-->
+    <!--@Table subscribe_message_scheduled_task-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="open_id" jdbcType="VARCHAR" property="openId" />
+    <result column="template_id" jdbcType="VARCHAR" property="templateId" />
+    <result column="message_content" jdbcType="OTHER" property="messageContent" />
+    <result column="cron_expression" jdbcType="VARCHAR" property="cronExpression" />
+    <result column="task_name" jdbcType="VARCHAR" property="taskName" />
+    <result column="task_type" jdbcType="INTEGER" property="taskType" />
+    <result column="execute_after_startup " jdbcType="BOOLEAN" property="executeAfterStartup" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, open_id, template_id, message_content, cron_expression, task_name, task_type, 
+    "execute_after_startup "
+  </sql>
+</mapper>

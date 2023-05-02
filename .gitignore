@@ -33,3 +33,4 @@ build/
 .vscode/
 /log/
 /logLocation_IS_UNDEFINED/
+/logs/
