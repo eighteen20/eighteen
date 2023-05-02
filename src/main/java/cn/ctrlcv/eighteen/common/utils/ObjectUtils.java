@@ -13,6 +13,7 @@ import java.util.Map;
  * @author liujm
  * @date 2023-04-25
  */
+@SuppressWarnings("unused")
 public class ObjectUtils {
 
     /**

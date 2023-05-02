@@ -7,6 +7,7 @@ import cn.ctrlcv.eighteen.common.exception.CustomException;
 import cn.ctrlcv.eighteen.common.model.UserToken;
 import cn.ctrlcv.eighteen.common.utils.JwtUtil;
 import org.springframework.core.MethodParameter;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
@@ -27,10 +28,10 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
     }
 
     @Override
-    public UserToken resolveArgument(MethodParameter parameter,
+    public UserToken resolveArgument(@NonNull MethodParameter parameter,
                                      ModelAndViewContainer mavContainer,
                                      NativeWebRequest webRequest,
-                                     WebDataBinderFactory binderFactory) throws Exception {
+                                     WebDataBinderFactory binderFactory) {
         // 解析 JWT Token，然后返回用户对象。
 
         String token = webRequest.getHeader(SysConstant.AUTHORIZATION);

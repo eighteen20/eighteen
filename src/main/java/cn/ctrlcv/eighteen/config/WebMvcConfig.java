@@ -5,6 +5,7 @@ import cn.ctrlcv.eighteen.client.WechatClient;
 import cn.ctrlcv.eighteen.interceptor.JwtAuthInterceptor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
@@ -23,6 +24,7 @@ import java.util.List;
  * @author liujm
  * @date 2023-04-24
  */
+@Slf4j
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
@@ -35,6 +37,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Bean
     WebClient webClient(ObjectMapper objectMapper) {
+        log.info("注册Http client 客户端：{}", objectMapper.toString());
         return WebClient.builder()
                 .baseUrl("https://api.weixin.qq.com")
                 .build();

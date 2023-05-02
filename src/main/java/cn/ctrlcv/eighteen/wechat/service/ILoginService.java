@@ -34,7 +34,7 @@ public interface ILoginService {
      * 刷新token
      *
      * @param token token
-     * @return
+     * @return 新token
      */
     ApiResult<String> refreshToken(String token);
 }

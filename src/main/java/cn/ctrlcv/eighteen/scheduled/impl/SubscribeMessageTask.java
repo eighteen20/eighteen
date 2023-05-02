@@ -1,14 +1,9 @@
 package cn.ctrlcv.eighteen.scheduled.impl;
 
-import cn.ctrlcv.eighteen.common.enums.ApiErrorEnum;
-import cn.ctrlcv.eighteen.common.exception.CustomException;
 import cn.ctrlcv.eighteen.client.WechatClient;
 import cn.ctrlcv.eighteen.client.request.SendSubscribeMessageRequest;
-import cn.ctrlcv.eighteen.client.response.CommonResponse;
 import cn.ctrlcv.eighteen.client.service.WechatAccessTokenService;
 import cn.ctrlcv.eighteen.wechat.mapper.entity.SubscribeMessageScheduledTaskEntity;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -41,16 +36,8 @@ public class SubscribeMessageTask implements TaskExecutor {
         request.setTouser(task.getOpenId());
         request.setMiniprogramState("trial");
         log.info("订阅消息发送请求: {}", request);
-        wechatClient.sendSubscribeMessage(accessToken, request).subscribe(res -> {
-            log.info("任务ID：{} ==== 订阅消息发送结果: {}", task.getId(), res);
-            ObjectMapper objectMapper = new ObjectMapper();
-            CommonResponse commonResponse;
-            try {
-                commonResponse = objectMapper.readValue(res, CommonResponse.class);
-            } catch (JsonProcessingException e) {
-                throw new CustomException(ApiErrorEnum.INTERNAL_SERVER_ERROR.getCode(), "订阅消息发送结果解析失败");
-            }
-        });
+        wechatClient.sendSubscribeMessage(accessToken, request)
+                .subscribe(res -> log.info("任务ID：{} ==== 订阅消息发送结果: {}", task.getId(), res));
     }
 
 }

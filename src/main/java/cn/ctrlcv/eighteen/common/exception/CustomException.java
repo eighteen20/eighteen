@@ -11,9 +11,9 @@ import cn.ctrlcv.eighteen.common.enums.ApiErrorEnum;
  */
 public class CustomException extends RuntimeException {
 
-    private int code;
+    private final int code;
 
-    private String error;
+    private final String error;
 
 
     public CustomException(int code, String message) {
@@ -26,10 +26,6 @@ public class CustomException extends RuntimeException {
         super(String.valueOf(exceptionEnum.getCode()));
         this.code   = exceptionEnum.getCode();
         this.error  = exceptionEnum.getMessage();
-    }
-
-    public int getCode() {
-        return code;
     }
 
     public String getError() {

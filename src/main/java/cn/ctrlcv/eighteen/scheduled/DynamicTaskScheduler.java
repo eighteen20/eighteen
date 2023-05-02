@@ -11,6 +11,7 @@ import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
+import org.springframework.lang.NonNull;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.stereotype.Component;
@@ -43,7 +44,7 @@ public class DynamicTaskScheduler implements ApplicationListener<AccessTokenRefr
     private final Map<String, ScheduledFuture<?>> scheduledTasks = new ConcurrentHashMap<>();
 
     @Override
-    public void onApplicationEvent(AccessTokenRefreshedEvent event) {
+    public void onApplicationEvent(@NonNull AccessTokenRefreshedEvent event) {
         init();
     }
 
@@ -77,6 +78,7 @@ public class DynamicTaskScheduler implements ApplicationListener<AccessTokenRefr
      *
      * @param taskId 任务ID
      */
+    @SuppressWarnings("unused")
     public void rescheduleTask(Integer taskId) {
         SubscribeMessageScheduledTaskEntity task = scheduledTaskMapper.selectById(taskId);
         if (task != null) {

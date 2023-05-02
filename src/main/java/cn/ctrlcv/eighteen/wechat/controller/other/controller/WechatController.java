@@ -2,16 +2,16 @@ package cn.ctrlcv.eighteen.wechat.controller.other.controller;
 
 import cn.ctrlcv.eighteen.annotations.SkipTokenCheck;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 /**
  * Class Name: WechatController
- * Class Description: TODO
+ * Class Description: 微信服务器严重
  *
  * @author liujm
  * @date 2023-04-27
@@ -26,12 +26,12 @@ public class WechatController {
     public Long validate(@RequestParam("signature") String signature,
                          @RequestParam("timestamp") Long timestamp,
                          @RequestParam("nonce") String nonce,
-                         @RequestParam("echostr") Long echostr) throws NoSuchAlgorithmException {
+                         @RequestParam("echostr") Long echostr) {
         log.info("微信验证开始--------");
 
         try {
             //这里的“token”是正确的token，由服务器定义，小程序只有使用正确的token，微信服务器才会验证通过
-            String checkSignature = this.sha1("0123icdkcicnakc12c5aac4a8c48as4s", timestamp, nonce);
+            String checkSignature = this.sha1(timestamp, nonce);
             if (checkSignature.equals(signature)) {
                 return echostr;
             }
@@ -42,14 +42,14 @@ public class WechatController {
 
     }
 
-    private String sha1(String token, Long timestamp, String nonce) throws NoSuchAlgorithmException {
+    private String sha1(Long timestamp, String nonce) {
         try {
-            Object[] array = new Object[]{token, timestamp, nonce};
-            StringBuffer sb = new StringBuffer();
+            Object[] array = new Object[]{"0123icdkcicnakc12c5aac4a8c48as4s", timestamp, nonce};
+            StringBuilder sb = new StringBuilder();
             // 字符串排序
             Arrays.sort(array);
-            for (int i = 0; i < array.length; i++) {
-                sb.append(array[i]);
+            for (Object o : array) {
+                sb.append(o);
             }
             String str = sb.toString();
             // SHA1签名生成
@@ -57,16 +57,16 @@ public class WechatController {
             md.update(str.getBytes());
             byte[] digest = md.digest();
 
-            StringBuffer hexstr = new StringBuffer();
-            String shaHex = "";
-            for (int i = 0; i < digest.length; i++) {
-                shaHex = Integer.toHexString(digest[i] & 0xFF);
+            StringBuilder hexStr = new StringBuilder();
+            String shaHex;
+            for (byte b : digest) {
+                shaHex = Integer.toHexString(b & 0xFF);
                 if (shaHex.length() < 2) {
-                    hexstr.append(0);
+                    hexStr.append(0);
                 }
-                hexstr.append(shaHex);
+                hexStr.append(shaHex);
             }
-            return hexstr.toString();
+            return hexStr.toString();
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("11111111");

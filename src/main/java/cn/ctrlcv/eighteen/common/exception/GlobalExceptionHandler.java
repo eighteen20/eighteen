@@ -22,14 +22,14 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = {Exception.class})
     protected ApiResult<?> handleGeneralException(Exception ex, WebRequest request) {
-        log.error("拦截到系统异常：{}", ex.getMessage());
+        log.error("请求：{}， 拦截到系统异常：{}", request.getContextPath(), ex.getMessage());
         ex.printStackTrace();
         return ApiResult.error(ApiErrorEnum.INTERNAL_SERVER_ERROR, ex.getMessage());
     }
 
     @ExceptionHandler(value = {IllegalArgumentException.class})
     protected ApiResult<?> handleIllegalArgumentException(IllegalArgumentException ex, WebRequest request) {
-        log.error("非法参数异常：{}", ex.getMessage());
+        log.error("请求：{}， 非法参数异常：{}", request.getContextPath(), ex.getMessage());
         ex.printStackTrace();
         return ApiResult.error(ApiErrorEnum.BAD_REQUEST, ex.getMessage());
     }

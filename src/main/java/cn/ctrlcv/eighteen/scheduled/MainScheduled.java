@@ -1,9 +1,7 @@
 package cn.ctrlcv.eighteen.scheduled;
 
 import cn.ctrlcv.eighteen.client.service.WechatAccessTokenService;
-import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
-import org.springframework.core.annotation.Order;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 

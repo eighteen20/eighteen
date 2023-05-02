@@ -52,8 +52,8 @@ public enum ApiErrorEnum {
 
     ;
 
-    private int code;
-    private String message;
+    private final int code;
+    private final String message;
 
     ApiErrorEnum(int code, String message) {
         this.code = code;

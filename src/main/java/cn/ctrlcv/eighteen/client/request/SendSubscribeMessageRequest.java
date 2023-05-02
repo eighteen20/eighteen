@@ -54,7 +54,7 @@ public class SendSubscribeMessageRequest {
      *     </ul>
      * </p>
      */
-    private Map<String, Object> data;
+    private Map<?, ?> data;
 
     /**
      * 跳转小程序类型：developer为开发版；trial为体验版；formal为正式版；默认为正式版
@@ -75,7 +75,7 @@ public class SendSubscribeMessageRequest {
                 DateUtil.getCurrentDateString(SysConstant.SEND_SUBSCRIBE_MESSAGE_PLACEHOLDER));
 
         ObjectMapper objectMapper = new ObjectMapper();
-        Map<String, Object> map;
+        Map<?, ?> map;
         try {
             map = objectMapper.readValue(data, Map.class);
         } catch (JsonProcessingException e) {

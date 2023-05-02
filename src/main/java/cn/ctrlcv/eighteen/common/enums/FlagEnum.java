@@ -1,6 +1,7 @@
 package cn.ctrlcv.eighteen.common.enums;
 
 import com.baomidou.mybatisplus.annotation.EnumValue;
+import lombok.Getter;
 
 /**
  * enum Name: FlagEnum
@@ -22,19 +23,15 @@ public enum FlagEnum {
     INVALID(false, "无效");
 
     @EnumValue
-    private Boolean code;
-    private String desc;
+    @Getter
+    private final Boolean code;
+
+    @Getter
+    private final String desc;
 
     FlagEnum(Boolean code, String desc) {
         this.code = code;
         this.desc = desc;
     }
 
-    public Boolean getCode() {
-        return code;
-    }
-
-    public String getDesc() {
-        return desc;
-    }
 }

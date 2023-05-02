@@ -12,11 +12,12 @@ import java.util.Map;
 
 /**
  * Class Name: JwtUtil
- * Class Description: TODO
+ * Class Description: Jwt token 工具类
  *
  * @author liujm
  * @date 2023-04-24
  */
+@SuppressWarnings("unused")
 public class JwtUtil {
     private static final String SECRET_KEY = "cnctrlcveighteen121515155519759633";
     private static final long EXPIRATION_TIME = 3 * 60 * 60 * 1000;
@@ -49,14 +50,19 @@ public class JwtUtil {
     }
 
     public static String refreshToken(String token) {
+        UserToken userToken = getObject(token);
+
+        return generateToken(userToken);
+    }
+
+    private static UserToken getObject(String token) {
         Key key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
         Claims claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
         UserToken userToken = new UserToken();
         userToken.setUserId((Integer) claims.get("userId"));
         userToken.setOpenId((String) claims.get("openId"));
         userToken.setNickname((String) claims.get("nickname"));
-
-        return generateToken(userToken);
+        return userToken;
     }
 
     public static Integer getUserIdFromToken(String token) {
@@ -66,13 +72,7 @@ public class JwtUtil {
     }
 
     public static UserToken getUserFromToken(String token) {
-        Key key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
-        Claims claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
-        UserToken userToken = new UserToken();
-        userToken.setUserId((Integer) claims.get("userId"));
-        userToken.setOpenId((String) claims.get("openId"));
-        userToken.setNickname((String) claims.get("nickname"));
-        return userToken;
+        return getObject(token);
     }
 
 }

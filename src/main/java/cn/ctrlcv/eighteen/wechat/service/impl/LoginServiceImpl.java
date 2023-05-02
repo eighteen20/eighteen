@@ -74,7 +74,7 @@ public class LoginServiceImpl implements ILoginService {
                     userToken.setUserId(SimpleIdGenerator.nextId());
                     userToken.setOpenId(sessionDTO.getOpenid());
                     userToken.setNickname("");
-                    String token = null;
+                    String token;
                     token = JwtUtil.generateToken(userToken);
 
                     loginVO.setIsNewUser(usersEntity == null);

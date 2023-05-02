@@ -52,7 +52,7 @@ public class LoginRegisterController {
      *
      * @param registerDTO {@link RegisterDTO}
      * @param token {@link UserToken}
-     * @return
+     * @return 结果提示
      */
     @PostMapping("register")
         public ApiResult<String> register(@RequestBody RegisterDTO registerDTO, @CurrentUser UserToken token) {

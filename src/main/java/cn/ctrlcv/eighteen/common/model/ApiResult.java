@@ -9,6 +9,7 @@ import cn.ctrlcv.eighteen.common.enums.ApiErrorEnum;
  * @author liujm
  * @date 2023-04-24
  */
+@SuppressWarnings("unused")
 public class ApiResult<T> {
 
     private int code;
