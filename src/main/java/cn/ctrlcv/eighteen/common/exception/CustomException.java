@@ -9,6 +9,7 @@ import cn.ctrlcv.eighteen.common.enums.ApiErrorEnum;
  * @author liujm
  * @date 2023-04-25
  */
+@SuppressWarnings("unused")
 public class CustomException extends RuntimeException {
 
     private final int code;
