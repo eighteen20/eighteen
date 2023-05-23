@@ -46,7 +46,7 @@ comment on column love.users.lunar_birthday is '农历生日';
 comment on column love.users.avatar is '头像URL';
 
 alter table love.users
-    owner to postgresql;
+    owner to postgres;
 
 create index if not exists idx_users_open_id
     on love.users (open_id);
@@ -105,7 +105,7 @@ comment on column love.subscribe_message_scheduled_task.task_type is '任务类�
 comment on column love.subscribe_message_scheduled_task."execute_after_startup " is '是否项目启动后立即执行';
 
 alter table love.subscribe_message_scheduled_task
-    owner to postgresql;
+    owner to postgres;
 
 create table if not exists love.task_type_info
 (
@@ -140,5 +140,44 @@ comment on column love.task_type_info.updated_at is '修改日期，自动使用
 comment on column love.task_type_info.updated_by is '修改人';
 
 alter table love.task_type_info
-    owner to postgresql;
+    owner to postgres;
+
+
+
+create table if not exists love.couple_relationship
+(
+    id                 bigint                                                            not null
+        primary key,
+    boyfriend_user_id  bigint                                                            not null,
+    girlfriend_user_id bigint                                                            not null,
+    love_date          date                                                              not null,
+    flag               boolean                  default true                             not null,
+    created_at         timestamp with time zone default (now() AT TIME ZONE 'utc'::text) not null,
+    created_by         varchar(50)                                                       not null,
+    updated_at         timestamp with time zone default (now() AT TIME ZONE 'utc'::text) not null,
+    updated_by         varchar(50)                                                       not null
+);
+
+comment on table love.couple_relationship is '情侣关系表';
+
+comment on column love.couple_relationship.id is '主键ID';
+
+comment on column love.couple_relationship.boyfriend_user_id is '男朋友用户ID';
+
+comment on column love.couple_relationship.girlfriend_user_id is '女朋友用户ID';
+
+comment on column love.couple_relationship.love_date is '恋爱日期';
+
+comment on column love.couple_relationship.flag is '是否有效，默认为TRUE';
+
+comment on column love.couple_relationship.created_at is '创建日期，自动使用当前时间';
+
+comment on column love.couple_relationship.created_by is '创建人';
+
+comment on column love.couple_relationship.updated_at is '修改日期，自动使用当前时间';
+
+comment on column love.couple_relationship.updated_by is '修改人';
+
+alter table love.couple_relationship
+    owner to postgres;
 

@@ -1,4 +1,4 @@
-package cn.ctrlcv.eighteen.wechat.controller.other.controller;
+package cn.ctrlcv.eighteen.wechat.controller.other;
 
 import cn.ctrlcv.eighteen.annotations.SkipTokenCheck;
 import lombok.extern.slf4j.Slf4j;

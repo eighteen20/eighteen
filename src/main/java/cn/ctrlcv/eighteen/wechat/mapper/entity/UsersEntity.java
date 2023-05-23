@@ -1,5 +1,6 @@
 package cn.ctrlcv.eighteen.wechat.mapper.entity;
 
+import cn.ctrlcv.eighteen.common.enums.GenderEnum;
 import cn.ctrlcv.eighteen.common.model.BaseEntityField;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -65,7 +66,7 @@ public class UsersEntity extends BaseEntityField implements Serializable  {
      * 性别
      */
     @TableField(value = "gender")
-    private String gender;
+    private GenderEnum gender;
 
     /**
      * 头像

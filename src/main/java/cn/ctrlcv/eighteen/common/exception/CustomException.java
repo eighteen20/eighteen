@@ -24,7 +24,7 @@ public class CustomException extends RuntimeException {
     }
 
     public CustomException(ApiErrorEnum exceptionEnum) {
-        super(String.valueOf(exceptionEnum.getCode()));
+        super(String.valueOf(exceptionEnum.getMessage()));
         this.code   = exceptionEnum.getCode();
         this.error  = exceptionEnum.getMessage();
     }

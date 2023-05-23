@@ -21,7 +21,7 @@ import reactor.core.publisher.Mono;
  * @date 2023-04-24
  */
 @RestController
-@RequestMapping("v1/loginRegister/")
+@RequestMapping("/v1/loginRegister/")
 public class LoginRegisterController {
 
     @SkipTokenCheck

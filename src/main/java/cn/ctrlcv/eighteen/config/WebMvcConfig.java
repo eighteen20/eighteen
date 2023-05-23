@@ -2,8 +2,16 @@ package cn.ctrlcv.eighteen.config;
 
 import cn.ctrlcv.eighteen.annotations.resolver.UserArgumentResolver;
 import cn.ctrlcv.eighteen.client.WechatClient;
+import cn.ctrlcv.eighteen.config.wx.AppletConfig;
 import cn.ctrlcv.eighteen.interceptor.JwtAuthInterceptor;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.qcloud.cos.COSClient;
+import com.qcloud.cos.ClientConfig;
+import com.qcloud.cos.auth.BasicCOSCredentials;
+import com.qcloud.cos.auth.COSCredentials;
+import com.qcloud.cos.http.HttpProtocol;
+import com.qcloud.cos.region.Region;
+import jakarta.annotation.Resource;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -42,6 +50,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .baseUrl("https://api.weixin.qq.com")
                 .build();
     }
+
     @SneakyThrows
     @Bean
     WechatClient postClient(WebClient webClient) {

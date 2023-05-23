@@ -3,6 +3,7 @@ package cn.ctrlcv.eighteen.wechat.service.impl;
 import cn.ctrlcv.eighteen.common.constant.SysConstant;
 import cn.ctrlcv.eighteen.common.enums.ApiErrorEnum;
 import cn.ctrlcv.eighteen.common.enums.FlagEnum;
+import cn.ctrlcv.eighteen.common.enums.GenderEnum;
 import cn.ctrlcv.eighteen.common.exception.CustomException;
 import cn.ctrlcv.eighteen.common.model.ApiResult;
 import cn.ctrlcv.eighteen.common.model.UserToken;
@@ -25,6 +26,7 @@ import com.nlf.calendar.Solar;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import reactor.core.publisher.Mono;
 
 import java.text.ParseException;
@@ -71,13 +73,24 @@ public class LoginServiceImpl implements ILoginService {
                     LoginVO loginVO = new LoginVO();
 
                     UserToken userToken = new UserToken();
-                    userToken.setUserId(SimpleIdGenerator.nextId());
+                    if (usersEntity == null) {
+                        userToken.setUserId(SimpleIdGenerator.nextId());
+                        loginVO.setIsNewUser(true);
+                        userToken.setNickname("");
+                    } else {
+                        userToken.setUserId(usersEntity.getUserId());
+                        loginVO.setIsNewUser(false);
+                        userToken.setNickname(usersEntity.getNickname());
+
+                        Assert.isTrue(sessionDTO.getOpenid().equals(usersEntity.getOpenId()), "用户信息不匹配");
+                    }
+
                     userToken.setOpenId(sessionDTO.getOpenid());
-                    userToken.setNickname("");
+
                     String token;
                     token = JwtUtil.generateToken(userToken);
 
-                    loginVO.setIsNewUser(usersEntity == null);
+
                     loginVO.setToken(token);
 
                     return Mono.just(ApiResult.success(loginVO));
@@ -93,6 +106,14 @@ public class LoginServiceImpl implements ILoginService {
         entity.setPhoneNumber(registerDTO.getPhoneNumber());
         entity.setFullName(registerDTO.getFullName());
         entity.setNickname(registerDTO.getNickname());
+
+        if (GenderEnum.MAN.getDesc().equals(registerDTO.getGender())) {
+            entity.setAvatar("https://eighteen-1309533679.cos.ap-nanjing.myqcloud.com/%E5%A4%B4%E5%83%8F-%E7%94%B7%E5%85%AD.png");
+        }
+
+        if (GenderEnum.WOMAN.getDesc().equals(registerDTO.getGender())) {
+            entity.setAvatar("https://eighteen-1309533679.cos.ap-nanjing.myqcloud.com/%E5%A4%B4%E5%83%8F-%E5%A5%B3%E4%B8%80.png");
+        }
 
 
         try {
@@ -119,7 +140,7 @@ public class LoginServiceImpl implements ILoginService {
             throw new CustomException(ApiErrorEnum.INTERNAL_SERVER_ERROR);
         }
 
-        entity.setGender(registerDTO.getGender());
+        entity.setGender(GenderEnum.valueOf(registerDTO.getGender()));
         entity.setFlag(FlagEnum.VALID);
         entity.setCreatedBy(registerDTO.getUserId().toString());
         entity.setUpdatedBy(registerDTO.getUserId().toString());

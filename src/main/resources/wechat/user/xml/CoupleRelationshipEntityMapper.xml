@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ctrlcv.eighteen.wechat.mapper.CoupleRelationshipEntityMapper">
+  <resultMap id="BaseResultMap" type="cn.ctrlcv.eighteen.wechat.mapper.entity.CoupleRelationshipEntity">
+    <!--@mbg.generated-->
+    <!--@Table couple_relationship-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="boyfriend_user_id" jdbcType="BIGINT" property="boyfriendUserId" />
+    <result column="girlfriend_user_id" jdbcType="BIGINT" property="girlfriendUserId" />
+    <result column="love_date" jdbcType="DATE" property="loveDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, boyfriend_user_id, girlfriend_user_id, love_date
+  </sql>
+</mapper>

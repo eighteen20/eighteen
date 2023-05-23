@@ -75,4 +75,15 @@ public class DateUtil {
         return formatter.format(new Date());
     }
 
+
+    /**
+     * 获取东八区时间
+     *
+     * @param date UTC时间
+     * @return {@link Date} 东八区时间
+     */
+    public static Date getGMT8Date(Date date) {
+        return new Date(date.getTime() + 8 * 60 * 60 * 1000);
+    }
+
 }

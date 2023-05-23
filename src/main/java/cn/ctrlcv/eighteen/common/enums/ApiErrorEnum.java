@@ -39,16 +39,21 @@ public enum ApiErrorEnum {
      */
     INTERNAL_SERVER_ERROR(500, "Internal Server Error"),
 
+    LOGIN_EXPIRED(1001, "登录过期，请重新登录"),
+
+    /**
+     * 未找到用户信息
+     */
+    USER_NOT_FOUND(1002, "未找到用户信息"),
+
     /**
      * 未能获得 OPENID
      */
-    FAILED_TO_OBTAIN_OPENID(1000, "微信身份认证失败，请重试"),
+    FAILED_TO_OBTAIN_OPENID(2000, "微信身份认证失败，请重试"),
 
-    LOGIN_EXPIRED(1001, "登录过期，请重新登录"),
+    FAILED_TO_SEND_SUBSCRIPTION_MESSAGE(2001, "微信小程序订阅消息发送失败"),
 
-    FAILED_TO_SEND_SUBSCRIPTION_MESSAGE(10002, "微信小程序订阅消息发送失败"),
-
-    FAILED_TO_OBTAIN_ACCESS_TOKEN(1003, "微信AccessToken获取失败，请重试"),
+    FAILED_TO_OBTAIN_ACCESS_TOKEN(2002, "微信AccessToken获取失败，请重试"),
 
     ;
 

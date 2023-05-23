@@ -2,6 +2,7 @@ package cn.ctrlcv.eighteen.config.wx;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,6 +15,12 @@ import org.springframework.stereotype.Component;
 @Data
 @Component
 @ConfigurationProperties(prefix = "wx")
+@EnableConfigurationProperties
 public class AppletConfig {
+
     private WechatApplet applet;
+
+    private Developer developer;
+
+
 }
