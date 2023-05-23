@@ -27,9 +27,9 @@ logging:
 
 wx:
   applet:
-    appid: wxae7f80c943e1b694
-    appSecret: 6117094ba349344da58990ebd09292b7
+    appid: 
+    appSecret: 
   developer:
-    secretId: AKIDLdvCPenlXJvJI7lDczHQbdgbUO7dv3BE
-    secretKey: AKxa2Kf0JZi3GSWM1ShppcIrO7iEYgeP
-    cosRegion: ap-nanjing
+    secretId: 
+    secretKey: 
+    cosRegion: 
